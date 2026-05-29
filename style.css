@@ -112,6 +112,10 @@ body {
   scrollbar-width: none; /* Hide scrollbar for clean device viewport */
 }
 
+.app-container.login-active {
+  overflow-y: hidden !important; /* Force block scrolling on the main device container when login page is visible */
+}
+
 .app-container::-webkit-scrollbar {
   display: none;
 }

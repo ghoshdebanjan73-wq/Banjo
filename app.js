@@ -312,12 +312,16 @@ function showScreen(screenId) {
   // Hide or Show bottom navigation depending on login
   const bottomNav = document.getElementById('app-bottom-nav');
   const fabBtn = document.getElementById('app-fab');
+  const appContainer = document.querySelector('.app-container');
+
   if (screenId === 'login-screen') {
     bottomNav.style.display = 'none';
     fabBtn.style.display = 'none';
+    if (appContainer) appContainer.classList.add('login-active');
   } else {
     bottomNav.style.display = 'flex';
     fabBtn.style.display = 'flex';
+    if (appContainer) appContainer.classList.remove('login-active');
   }
 }
 
