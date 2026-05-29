@@ -318,10 +318,12 @@ function showScreen(screenId) {
     bottomNav.style.display = 'none';
     fabBtn.style.display = 'none';
     if (appContainer) appContainer.classList.add('login-active');
+    document.getElementById('device-status-bar')?.classList.remove('dark-mode-status');
   } else {
     bottomNav.style.display = 'flex';
     fabBtn.style.display = 'flex';
     if (appContainer) appContainer.classList.remove('login-active');
+    document.getElementById('device-status-bar')?.classList.add('dark-mode-status');
   }
 }
 

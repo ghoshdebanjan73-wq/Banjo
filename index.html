@@ -37,15 +37,16 @@
       <!-- 1. LOGIN SCREEN -->
       <!-- ----------------------------------------- -->
       <section id="login-screen" class="screen">
-        <header class="login-header">
-          <!-- Logo Badge -->
-          <div class="logo-circle" id="nx-logo">NX</div>
-          <h1 class="brand-title-login">Navexa</h1>
-          <div class="subtitle-login">Airport & Local Ride Management</div>
-          
-          <h2 class="welcome-back">Welcome Back</h2>
-          <div class="description-login">Manage your trips, bookings, and daily operations.</div>
-        </header>
+        <div class="login-content-wrapper">
+          <header class="login-header">
+            <!-- Logo Badge -->
+            <div class="logo-circle" id="nx-logo">NX</div>
+            <h1 class="brand-title-login">Navexa</h1>
+            <div class="subtitle-login">Airport & Local Ride Management</div>
+            
+            <h2 class="welcome-back">Welcome Back</h2>
+            <div class="description-login">Manage your trips, bookings, and daily operations.</div>
+          </header>
 
         <!-- Credentials Card -->
         <form id="login-form" class="login-card">
@@ -80,68 +81,71 @@
         <footer class="login-footer">
           <p>Built for local travel businesses</p>
         </footer>
+        </div>
       </section>
 
       <!-- ----------------------------------------- -->
       <!-- 2. DASHBOARD SCREEN -->
       <!-- ----------------------------------------- -->
       <section id="dashboard-screen" class="screen hidden">
-        <!-- Dashboard Top Bar Header -->
-        <header class="dashboard-header">
-          <div class="profile-area">
-            <div class="profile-avatar" id="profile-avatar" title="Click to Sign Out">
-              <span id="profile-avatar-text">SM</span>
-              <div class="online-indicator"></div>
-            </div>
-            <div class="header-text">
-              <div class="greeting">
-                <span class="material-symbols-rounded">wb_sunny</span>
-                <span>Good Morning</span>
+        <!-- Top Navy Section -->
+        <div class="dashboard-top-section">
+          <!-- Dashboard Top Bar Header -->
+          <header class="dashboard-header">
+            <div class="profile-area">
+              <div class="profile-avatar" id="profile-avatar" title="Click to Sign Out">
+                <span id="profile-avatar-text">SM</span>
+                <div class="online-indicator"></div>
               </div>
-              <h1 class="brand-title">Fleet Precision</h1>
-              <span class="brand-subtitle">Airport & Local Rides</span>
+              <div class="header-text">
+                <div class="greeting">
+                  <span class="material-symbols-rounded" style="color: #fbbf24;">wb_sunny</span>
+                  <span>Good Morning</span>
+                </div>
+                <h1 class="brand-title">Fleet Precision</h1>
+                <span class="brand-subtitle">Airport & Local Rides</span>
+              </div>
             </div>
-          </div>
 
-          <button class="notification-bell" id="notification-bell" aria-label="Notifications">
-            <span class="material-symbols-rounded">notifications</span>
-            <div class="notification-badge"></div>
-          </button>
-        </header>
+            <button class="notification-bell" id="notification-bell" aria-label="Notifications">
+              <span class="material-symbols-rounded">notifications_active</span>
+            </button>
+          </header>
 
-        <!-- Today's Overview Container (Dark Navy Card) -->
-        <article class="overview-card">
-          <div class="overview-header">
-            <h2 class="overview-title">TODAY'S OVERVIEW</h2>
-            <div class="live-badge">Live</div>
-          </div>
-
-          <div class="overview-grid">
-            <div class="metric-item">
-              <span class="metric-val" id="m-completed">2</span>
-              <span class="metric-lbl">Trips completed today</span>
+          <!-- Today's Overview Container -->
+          <article class="overview-card">
+            <div class="overview-header">
+              <h2 class="overview-title">TODAY'S OVERVIEW</h2>
+              <div class="live-badge">Live</div>
             </div>
-            <div class="metric-item">
-              <span class="metric-val" id="m-active-cars">2</span>
-              <span class="metric-lbl">Cars active</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-val" id="m-next-pickup">6:30 PM</span>
-              <span class="metric-lbl">Next pickup</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-val" id="m-earnings">₹8,500</span>
-              <span class="metric-lbl">Earnings</span>
-            </div>
-          </div>
 
-          <div class="overview-divider"></div>
+            <div class="overview-grid">
+              <div class="metric-item">
+                <span class="metric-val" id="m-completed">2</span>
+                <span class="metric-lbl">Trips completed<br>today</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val" id="m-active-cars">2</span>
+                <span class="metric-lbl">Cars active</span>
+              </div>
+              <div class="metric-item" style="margin-top: 10px;">
+                <span class="metric-val" id="m-next-pickup">6:30 PM</span>
+                <span class="metric-lbl">Next pickup</span>
+              </div>
+              <div class="metric-item" style="margin-top: 10px;">
+                <span class="metric-val" id="m-earnings">₹8,500</span>
+                <span class="metric-lbl">Earnings</span>
+              </div>
+            </div>
 
-          <div class="pending-payment-bar">
-            <span class="material-symbols-rounded">calendar_today</span>
-            <span>1 payment pending</span>
-          </div>
-        </article>
+            <div class="overview-divider"></div>
+
+            <div class="pending-payment-bar">
+              <span class="material-symbols-rounded" style="font-size: 16px;">receipt_long</span>
+              <span>1 payment pending</span>
+            </div>
+          </article>
+        </div>
 
         <!-- Responsive Metrics Grid (2x2 small cards) -->
         <section class="secondary-grid">
@@ -246,6 +250,9 @@
             <!-- Rendered dynamically by app.js -->
           </div>
         </section>
+        
+        <!-- Bottom spacing for nav -->
+        <div style="height: 100px;"></div>
       </section>
 
       <!-- Floating Action Button -->

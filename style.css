@@ -102,18 +102,12 @@ body {
 .app-container {
   width: 100%;
   height: 100%;
-  background-color: var(--color-background);
+  background-color: #f4f6f8; /* Light gray background for app */
   border-radius: 36px;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none; /* Hide scrollbar for clean device viewport */
-}
-
-.app-container.login-active {
-  overflow-y: hidden !important; /* Force block scrolling on the main device container when login page is visible */
+  overflow: hidden; /* App container itself never scrolls, the .screen inside scrolls if needed */
 }
 
 .app-container::-webkit-scrollbar {
@@ -122,6 +116,9 @@ body {
 
 /* Simulated OS Status Bar */
 .device-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 48px;
   width: 100%;
   display: flex;
@@ -130,10 +127,15 @@ body {
   padding: 16px 28px 0;
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-on-surface);
+  color: var(--color-on-surface); /* Default dark text */
   background-color: transparent;
-  z-index: 90;
+  z-index: 100;
   pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.device-status-bar.dark-mode-status {
+  color: var(--color-surface-white); /* White text over navy top section */
 }
 
 .device-status-bar .status-icons {
@@ -194,15 +196,16 @@ body {
 
 /* Screen Base Wrapper */
 .screen {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  height: calc(100% - 48px); /* Account for status bar */
+  height: 100%; /* Take full height of container */
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 100px; /* Space for bottom navbar */
   opacity: 1;
   transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-overflow-scrolling: touch;
 }
 
 .screen::-webkit-scrollbar {
@@ -217,23 +220,33 @@ body {
 
 /* ----------------------------------------- */
 /* --- 1. LOGIN SCREEN STYLE ---             */
-/* ----------------------------------------- --> */
+/* ----------------------------------------- */
 #login-screen {
-  background: linear-gradient(180deg, #f0f4f8 0%, #edf1f5 100%);
-  padding: 12px var(--margin-mobile) 16px;
+  background: #eef2f6; /* Exactly matching the uploaded login screen background */
+  overflow: hidden; /* Strict scroll block for login */
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100% - 48px); /* Take exactly the remaining viewport height below status bar! */
-  overflow: hidden; /* Strict scroll block */
+  padding: 0;
+}
+
+.login-content-wrapper {
+  width: 100%;
+  max-width: 360px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-20px); /* Slightly pull up for visual balance */
 }
 
 .login-header {
   text-align: center;
-  margin-top: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 24px;
 }
 
 .logo-circle {
@@ -391,9 +404,9 @@ body {
 
 .btn-outline {
   background-color: var(--color-surface-white);
-  border: 1px solid var(--color-outline-variant);
+  border: 1px solid rgba(0, 17, 58, 0.1);
   color: var(--color-primary-dark);
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .btn-outline:hover {
@@ -402,10 +415,10 @@ body {
 
 .login-footer {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 40px;
   font-size: 11px;
   font-weight: 500;
-  color: var(--color-outline);
+  color: var(--color-primary-dark);
 }
 
 
@@ -413,8 +426,18 @@ body {
 /* --- 2. DASHBOARD SCREEN STYLE ---         */
 /* ----------------------------------------- */
 #dashboard-screen {
-  background-color: var(--color-background);
-  padding: 16px var(--margin-mobile) 100px;
+  background-color: #f4f6f8;
+}
+
+/* Dashboard Top Section (Navy Background spans full width & top) */
+.dashboard-top-section {
+  background-color: var(--color-primary-dark);
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+  padding: 60px var(--margin-mobile) 24px; /* 60px pt to clear absolute status bar */
+  color: var(--color-surface-white);
+  box-shadow: var(--shadow-level-2);
+  margin-bottom: 24px;
 }
 
 /* Header Area */
@@ -422,7 +445,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .profile-area {
@@ -436,7 +459,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-dark);
+  background-color: rgba(255, 255, 255, 0.15); /* Match design, lighter circle on navy */
   color: var(--color-surface-white);
   display: flex;
   align-items: center;
@@ -466,53 +489,51 @@ body {
 .greeting {
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-on-surface-variant);
+  color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
 .greeting .material-symbols-rounded {
-  font-size: 13px;
-  color: #f59e0b;
+  font-size: 14px;
   fill: 1; /* Filled variant */
 }
 
 .brand-title {
   font-size: 19px;
   font-weight: 700;
-  color: var(--color-primary-dark);
-  line-height: 22px;
+  color: var(--color-surface-white);
+  line-height: 24px;
 }
 
 .brand-subtitle {
-  font-size: 11px;
-  color: var(--color-outline);
-  font-weight: 500;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
 }
 
 .notification-bell {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-full);
-  background-color: var(--color-surface-white);
-  border: 1px solid var(--color-outline-variant);
+  background-color: rgba(255, 255, 255, 0.15); /* Match design on navy bg */
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: var(--shadow-level-1);
 }
 
 .notification-bell .material-symbols-rounded {
-  font-size: 20px;
-  color: var(--color-on-surface);
+  font-size: 22px;
+  color: var(--color-surface-white);
 }
 
 .notification-bell:hover {
-  background-color: #f3f4f5;
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .notification-badge {
@@ -525,14 +546,10 @@ body {
   background-color: var(--color-error);
 }
 
-/* Today's Overview (Main Navy Card) */
+/* Today's Overview (Transparent overlay since it is on the navy background) */
 .overview-card {
-  background-color: var(--color-primary-dark);
+  background-color: transparent;
   color: var(--color-surface-white);
-  border-radius: var(--radius-xl);
-  padding: var(--card-padding);
-  box-shadow: var(--shadow-level-2);
-  margin-bottom: 24px;
   position: relative;
 }
 
@@ -618,6 +635,7 @@ body {
 
 /* Secondary Stat Cards (2x2 Grid) */
 .secondary-grid {
+  padding: 0 var(--margin-mobile);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -850,7 +868,12 @@ body {
   box-shadow: var(--shadow-level-1);
   border: 1px solid rgba(0, 17, 58, 0.02);
   overflow: hidden;
-  margin-bottom: 16px;
+}
+
+/* Add padding to sections to align with mobile margins */
+.quick-actions-section, .fleet-status-section, .action-items-section, .recent-activity-section {
+  padding: 0 var(--margin-mobile);
+  margin-bottom: var(--section-gap);
 }
 
 .activity-row {
