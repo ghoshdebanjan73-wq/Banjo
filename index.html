@@ -15,271 +15,277 @@
 </head>
 <body>
 
-  <!-- Main Responsive Android Container -->
-  <main class="app-container">
+  <!-- Physical Phone Bezels & Frame Wrapper (Simulated Android Device on Desktop) -->
+  <div class="phone-frame">
+    <!-- Camera Notch / Island -->
+    <div class="phone-camera"></div>
+    
+    <!-- Main Device Viewport Container -->
+    <main class="app-container">
 
-    <!-- ----------------------------------------- -->
-    <!-- 1. LOGIN SCREEN -->
-    <!-- ----------------------------------------- -->
-    <section id="login-screen" class="screen">
-      <header class="login-header">
-        <!-- Logo Badge -->
-        <div class="logo-circle" id="nx-logo">NX</div>
-        <h1>Navexa</h1>
-        <div class="subtitle">Airport & Local Ride Management</div>
-        
-        <h2>Welcome Back</h2>
-        <div class="description">Manage your trips, bookings, and daily operations.</div>
-      </header>
-
-      <!-- Credentials Card -->
-      <form id="login-form" class="login-card">
-        <div class="input-group">
-          <label class="input-label" for="login-phone">Phone Number or Email</label>
-          <div class="input-wrapper">
-            <span class="material-symbols-rounded">phone_iphone</span>
-            <input type="text" id="login-phone" class="input-field" placeholder="Phone Number" required autocomplete="username">
-          </div>
+      <!-- Simulated OS Status Bar -->
+      <div class="device-status-bar" id="device-status-bar">
+        <div class="status-time">9:41</div>
+        <div class="status-icons">
+          <span class="material-symbols-rounded">signal_cellular_4_bar</span>
+          <span class="material-symbols-rounded">wifi</span>
+          <span class="material-symbols-rounded">battery_5_bar</span>
         </div>
+      </div>
 
-        <div class="input-group">
-          <label class="input-label" for="login-password">Password</label>
-          <div class="input-wrapper">
-            <span class="material-symbols-rounded">lock</span>
-            <input type="password" id="login-password" class="input-field" placeholder="Password" required autocomplete="current-password">
-            <button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
-              <span class="material-symbols-rounded">visibility_off</span>
+      <!-- ----------------------------------------- -->
+      <!-- 1. LOGIN SCREEN -->
+      <!-- ----------------------------------------- -->
+      <section id="login-screen" class="screen">
+        <header class="login-header">
+          <!-- Logo Badge -->
+          <div class="logo-circle" id="nx-logo">NX</div>
+          <h1 class="brand-title-login">Navexa</h1>
+          <div class="subtitle-login">Airport & Local Ride Management</div>
+          
+          <h2 class="welcome-back">Welcome Back</h2>
+          <div class="description-login">Manage your trips, bookings, and daily operations.</div>
+        </header>
+
+        <!-- Credentials Card -->
+        <form id="login-form" class="login-card">
+          <div class="input-group">
+            <div class="input-wrapper">
+              <span class="material-symbols-rounded">phone_iphone</span>
+              <input type="text" id="login-phone" class="input-field" placeholder="Phone Number" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-wrapper">
+              <span class="material-symbols-rounded">lock</span>
+              <input type="password" id="login-password" class="input-field" placeholder="Password" required autocomplete="current-password">
+              <button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+                <span class="material-symbols-rounded">visibility_off</span>
+              </button>
+            </div>
+          </div>
+
+          <a href="#" class="forgot-password">Forgot Password?</a>
+
+          <button type="submit" class="btn btn-primary">
+            <span>Sign In</span>
+          </button>
+
+          <button type="button" class="btn btn-outline" id="btn-otp">
+            <span>Continue with OTP</span>
+          </button>
+        </form>
+
+        <footer class="login-footer">
+          <p>Built for local travel businesses</p>
+        </footer>
+      </section>
+
+      <!-- ----------------------------------------- -->
+      <!-- 2. DASHBOARD SCREEN -->
+      <!-- ----------------------------------------- -->
+      <section id="dashboard-screen" class="screen hidden">
+        <!-- Dashboard Top Bar Header -->
+        <header class="dashboard-header">
+          <div class="profile-area">
+            <div class="profile-avatar" id="profile-avatar" title="Click to Sign Out">
+              <span id="profile-avatar-text">SM</span>
+              <div class="online-indicator"></div>
+            </div>
+            <div class="header-text">
+              <div class="greeting">
+                <span class="material-symbols-rounded">wb_sunny</span>
+                <span>Good Morning</span>
+              </div>
+              <h1 class="brand-title">Fleet Precision</h1>
+              <span class="brand-subtitle">Airport & Local Rides</span>
+            </div>
+          </div>
+
+          <button class="notification-bell" id="notification-bell" aria-label="Notifications">
+            <span class="material-symbols-rounded">notifications</span>
+            <div class="notification-badge"></div>
+          </button>
+        </header>
+
+        <!-- Today's Overview Container (Dark Navy Card) -->
+        <article class="overview-card">
+          <div class="overview-header">
+            <h2 class="overview-title">TODAY'S OVERVIEW</h2>
+            <div class="live-badge">Live</div>
+          </div>
+
+          <div class="overview-grid">
+            <div class="metric-item">
+              <span class="metric-val" id="m-completed">2</span>
+              <span class="metric-lbl">Trips completed today</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="m-active-cars">2</span>
+              <span class="metric-lbl">Cars active</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="m-next-pickup">6:30 PM</span>
+              <span class="metric-lbl">Next pickup</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val" id="m-earnings">₹8,500</span>
+              <span class="metric-lbl">Earnings</span>
+            </div>
+          </div>
+
+          <div class="overview-divider"></div>
+
+          <div class="pending-payment-bar">
+            <span class="material-symbols-rounded">calendar_today</span>
+            <span>1 payment pending</span>
+          </div>
+        </article>
+
+        <!-- Responsive Metrics Grid (2x2 small cards) -->
+        <section class="secondary-grid">
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="card-icon-wrapper blue-icon">
+                <span class="material-symbols-rounded">phone_iphone</span>
+              </div>
+            </div>
+            <div class="metric-card-title">Bookings</div>
+            <div class="metric-card-value" id="grid-bookings">4</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="card-icon-wrapper purple-icon">
+                <span class="material-symbols-rounded">directions_car</span>
+              </div>
+            </div>
+            <div class="metric-card-title">Active Cars</div>
+            <div class="metric-card-value" id="grid-active-cars">2</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="card-icon-wrapper green-icon">
+                <span class="material-symbols-rounded">groups</span>
+              </div>
+            </div>
+            <div class="metric-card-title">Customers</div>
+            <div class="metric-card-value" id="grid-customers">145</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="card-icon-wrapper dark-icon">
+                <span class="material-symbols-rounded">account_balance_wallet</span>
+              </div>
+              <div class="trend-badge">
+                <span class="material-symbols-rounded">trending_up</span>
+              </div>
+            </div>
+            <div class="metric-card-title">Earnings</div>
+            <div class="metric-card-value" id="grid-earnings">₹8.5k</div>
+          </div>
+        </section>
+
+        <!-- Quick Actions Container -->
+        <section class="quick-actions-section">
+          <h2 class="section-title">Quick Actions</h2>
+          <div class="actions-row">
+            <button class="action-btn" id="quick-add-booking">
+              <span class="material-symbols-rounded">add</span>
+              <span>Add Booking</span>
+            </button>
+            <button class="action-btn" id="quick-assign-car">
+              <span class="material-symbols-rounded">directions_car</span>
+              <span>Assign Car</span>
             </button>
           </div>
-        </div>
+        </section>
 
-        <a href="#" class="forgot-password">Forgot Password?</a>
-
-        <button type="submit" class="btn btn-primary">
-          <span>Sign In</span>
-          <span class="material-symbols-rounded">login</span>
-        </button>
-
-        <button type="button" class="btn btn-outline" id="btn-otp">
-          <span>Continue with OTP</span>
-          <span class="material-symbols-rounded">sms_failed</span>
-        </button>
-      </form>
-
-      <footer class="login-footer">
-        <p>Built for local travel businesses</p>
-      </footer>
-    </section>
-
-    <!-- ----------------------------------------- -->
-    <!-- 2. DASHBOARD SCREEN -->
-    <!-- ----------------------------------------- -->
-    <section id="dashboard-screen" class="screen hidden">
-      <!-- Dashboard Top Bar Header -->
-      <header class="dashboard-header">
-        <div class="profile-area">
-          <div class="profile-avatar" id="profile-avatar" title="Click to Sign Out">
-            <span id="profile-avatar-text">SM</span>
-            <div class="online-indicator"></div>
-          </div>
-          <div class="header-text">
-            <div class="greeting">
-              <span class="material-symbols-rounded">wb_sunny</span>
-              <span>Good Morning</span>
+        <!-- Fleet Status Grid -->
+        <section class="fleet-status-section">
+          <h2 class="section-title">Fleet Status</h2>
+          <div class="status-row">
+            <div class="status-card">
+              <div class="status-indicator-dot available"></div>
+              <div class="status-card-label">Available</div>
+              <div class="status-card-value" id="stat-available">1</div>
+              <div class="status-card-sub">Car</div>
             </div>
-            <h1 class="brand-title">Fleet Precision</h1>
-            <span class="brand-subtitle">Airport & Local Rides</span>
-          </div>
-        </div>
-
-        <button class="notification-bell" id="notification-bell" aria-label="Notifications">
-          <span class="material-symbols-rounded">notifications</span>
-          <div class="notification-badge"></div>
-        </button>
-      </header>
-
-      <!-- Today's Overview Container (Dark Navy Card) -->
-      <article class="overview-card">
-        <div class="overview-header">
-          <h2 class="overview-title">Today's Overview</h2>
-          <div class="live-badge">Live</div>
-        </div>
-
-        <div class="overview-grid">
-          <div class="metric-item">
-            <span class="metric-val" id="m-completed">2</span>
-            <span class="metric-lbl">Trips completed today</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-val" id="m-active-cars">2</span>
-            <span class="metric-lbl">Cars active</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-val" id="m-next-pickup">6:30 PM</span>
-            <span class="metric-lbl">Next pickup</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-val" id="m-earnings">₹8,500</span>
-            <span class="metric-lbl">Earnings</span>
-          </div>
-        </div>
-
-        <div class="overview-divider"></div>
-
-        <div class="pending-payment-bar">
-          <span class="material-symbols-rounded">pending_actions</span>
-          <span>1 payment pending</span>
-        </div>
-      </article>
-
-      <!-- Responsive Metrics Grid (2x2 small cards) -->
-      <section class="secondary-grid">
-        <div class="metric-card">
-          <div class="metric-card-header">
-            <div class="card-icon-wrapper">
-              <span class="material-symbols-rounded">book_online</span>
+            
+            <div class="status-card">
+              <div class="status-indicator-dot ontrip"></div>
+              <div class="status-card-label">On Trip</div>
+              <div class="status-card-value" id="stat-ontrip">2</div>
+              <div class="status-card-sub">Cars</div>
+            </div>
+            
+            <div class="status-card">
+              <div class="status-indicator-dot service"></div>
+              <div class="status-card-label">Service</div>
+              <div class="status-card-value" id="stat-service">1</div>
+              <div class="status-card-sub">Car</div>
             </div>
           </div>
-          <div class="metric-card-title">Bookings</div>
-          <div class="metric-card-value" id="grid-bookings">4</div>
-        </div>
+        </section>
 
-        <div class="metric-card">
-          <div class="metric-card-header">
-            <div class="card-icon-wrapper">
-              <span class="material-symbols-rounded">directions_car</span>
-            </div>
-          </div>
-          <div class="metric-card-title">Active Cars</div>
-          <div class="metric-card-value" id="grid-active-cars">2</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-card-header">
-            <div class="card-icon-wrapper">
-              <span class="material-symbols-rounded">groups</span>
-            </div>
-          </div>
-          <div class="metric-card-title">Customers</div>
-          <div class="metric-card-value" id="grid-customers">145</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-card-header">
-            <div class="card-icon-wrapper">
-              <span class="material-symbols-rounded">account_balance_wallet</span>
-            </div>
-            <div class="trend-badge">
-              <span class="material-symbols-rounded">trending_up</span>
-            </div>
-          </div>
-          <div class="metric-card-title">Earnings</div>
-          <div class="metric-card-value" id="grid-earnings">₹8.5k</div>
-        </div>
-      </section>
-
-      <!-- Quick Actions Container -->
-      <section class="quick-actions-section">
-        <h2 class="section-title">Quick Actions</h2>
-        <div class="actions-row">
-          <button class="action-btn" id="quick-add-booking">
-            <span class="material-symbols-rounded">add_circle</span>
-            <span>Add Booking</span>
-          </button>
-          <button class="action-btn" id="quick-assign-car">
-            <span class="material-symbols-rounded">assignment_ind</span>
-            <span>Assign Car</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- Fleet Status Grid -->
-      <section class="fleet-status-section">
-        <h2 class="section-title">Fleet Status</h2>
-        <div class="status-row">
-          <div class="status-card">
-            <div class="status-indicator-dot available"></div>
-            <div class="status-card-label">Available</div>
-            <div class="status-card-value" id="stat-available">1</div>
-            <div class="status-card-sub">Car</div>
-          </div>
-          
-          <div class="status-card">
-            <div class="status-indicator-dot ontrip"></div>
-            <div class="status-card-label">On Trip</div>
-            <div class="status-card-value" id="stat-ontrip">2</div>
-            <div class="status-card-sub">Cars</div>
-          </div>
-          
-          <div class="status-card">
-            <div class="status-indicator-dot service"></div>
-            <div class="status-card-label">Service</div>
-            <div class="status-card-value" id="stat-service">1</div>
-            <div class="status-card-sub">Car</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Action Items Banner Container -->
-      <section class="action-items-section" id="action-items-container">
-        <!-- Rendered dynamically by app.js -->
-        <div class="action-items-card">
-          <div class="action-icon-container">
-            <span class="material-symbols-rounded">notifications_active</span>
-          </div>
-          <div class="action-details">
-            <div class="action-title">Action Items</div>
-            <div class="action-description">Swift Dzire service due in 3 days. Pending payment ₹2,000. Airport pickup scheduled at 6:30 PM.</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Recent Activity Section -->
-      <section class="recent-activity-section">
-        <div class="recent-activity-header">
-          <h2 class="section-title">Recent Activity</h2>
-          <span class="view-all-btn" id="view-all-btn">View All</span>
-        </div>
-        <div class="recent-activity-list" id="recent-activity-container">
+        <!-- Action Items Banner Container -->
+        <section class="action-items-section" id="action-items-container">
           <!-- Rendered dynamically by app.js -->
-        </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="recent-activity-section">
+          <div class="recent-activity-header">
+            <h2 class="section-title">Recent Activity</h2>
+            <span class="view-all-btn" id="view-all-btn">View All</span>
+          </div>
+          <div class="recent-activity-list" id="recent-activity-container">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </section>
       </section>
-    </section>
 
-    <!-- Floating Action Button -->
-    <button class="fab" id="app-fab" aria-label="Add Booking quick launch" style="display: none;">
-      <span class="material-symbols-rounded">add</span>
-    </button>
+      <!-- Floating Action Button -->
+      <button class="fab" id="app-fab" aria-label="Add Booking quick launch" style="display: none;">
+        <span class="material-symbols-rounded">add</span>
+      </button>
 
-    <!-- Sticky Bottom Navigation Bar -->
-    <nav class="bottom-nav" id="app-bottom-nav" style="display: none;">
-      <a href="#" class="nav-item active" data-tab="dashboard">
-        <div class="nav-icon-wrapper">
-          <span class="material-symbols-rounded">dashboard</span>
-        </div>
-        <span>Dashboard</span>
-      </a>
-      <a href="#" class="nav-item" data-tab="fleet">
-        <div class="nav-icon-wrapper">
-          <span class="material-symbols-rounded">directions_car</span>
-        </div>
-        <span>Fleet</span>
-      </a>
-      <a href="#" class="nav-item" data-tab="customers">
-        <div class="nav-icon-wrapper">
-          <span class="material-symbols-rounded">groups</span>
-        </div>
-        <span>Customers</span>
-      </a>
-      <a href="#" class="nav-item" data-tab="ledger">
-        <div class="nav-icon-wrapper">
-          <span class="material-symbols-rounded">account_balance_wallet</span>
-        </div>
-        <span>Ledger</span>
-      </a>
-    </nav>
+      <!-- Sticky Bottom Navigation Bar -->
+      <nav class="bottom-nav" id="app-bottom-nav" style="display: none;">
+        <a href="#" class="nav-item active" data-tab="dashboard">
+          <div class="nav-icon-wrapper">
+            <span class="material-symbols-rounded">grid_view</span>
+          </div>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="fleet">
+          <div class="nav-icon-wrapper">
+            <span class="material-symbols-rounded">directions_car</span>
+          </div>
+          <span>Fleet</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="customers">
+          <div class="nav-icon-wrapper">
+            <span class="material-symbols-rounded">groups</span>
+          </div>
+          <span>Customers</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="ledger">
+          <div class="nav-icon-wrapper">
+            <span class="material-symbols-rounded">account_balance_wallet</span>
+          </div>
+          <span>Ledger</span>
+        </a>
+      </nav>
 
-  </main>
+      <!-- Simulated OS Home Line Indicator -->
+      <div class="device-home-indicator" id="device-home-indicator"></div>
+
+    </main>
+  </div>
 
   <!-- ----------------------------------------- -->
   <!-- 3. SLIDE-UP DIALOG MODALS -->
@@ -299,28 +305,28 @@
           <label class="input-label" for="book-name">Customer Name</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">person</span>
-            <input type="text" id="book-name" class="input-field" placeholder="e.g. Rahul Sharma" required style="padding-left: 48px;">
+            <input type="text" id="book-name" class="input-field-modal" placeholder="e.g. Rahul Sharma" required>
           </div>
         </div>
         <div class="input-group">
           <label class="input-label" for="book-pickup">Pickup Location</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">location_on</span>
-            <input type="text" id="book-pickup" class="input-field" placeholder="e.g. Delhi Airport Terminal 3" required style="padding-left: 48px;">
+            <input type="text" id="book-pickup" class="input-field-modal" placeholder="e.g. Delhi Airport Terminal 3" required>
           </div>
         </div>
         <div class="input-group">
           <label class="input-label" for="book-dropoff">Dropoff Location</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">flag</span>
-            <input type="text" id="book-dropoff" class="input-field" placeholder="e.g. Connaught Place" required style="padding-left: 48px;">
+            <input type="text" id="book-dropoff" class="input-field-modal" placeholder="e.g. Connaught Place" required>
           </div>
         </div>
         <div class="input-group">
           <label class="input-label" for="book-vehicle">Assign Vehicle (Optional)</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">local_taxi</span>
-            <select id="book-vehicle" class="input-field" style="padding-left: 48px; background-color: var(--color-surface-container-low);">
+            <select id="book-vehicle" class="input-field-modal">
               <option value="">Pending Assignment (Hold)</option>
               <option value="Swift Dzire (DL-1CA-1234)">Swift Dzire (DL-1C-1234)</option>
               <option value="Innova Crysta (DL-2CB-5678)">Innova Crysta (DL-2C-5678)</option>
@@ -330,7 +336,6 @@
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
           <span>Submit Booking</span>
-          <span class="material-symbols-rounded">check_circle</span>
         </button>
       </form>
     </div>
@@ -350,14 +355,14 @@
           <label class="input-label" for="assign-driver">Driver Name</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">person_pin</span>
-            <input type="text" id="assign-driver" class="input-field" placeholder="e.g. Rajesh Kumar" required style="padding-left: 48px;">
+            <input type="text" id="assign-driver" class="input-field-modal" placeholder="e.g. Rajesh Kumar" required>
           </div>
         </div>
         <div class="input-group">
           <label class="input-label" for="assign-vehicle">Select Available Car</label>
           <div class="input-wrapper">
             <span class="material-symbols-rounded">car_rental</span>
-            <select id="assign-vehicle" class="input-field" style="padding-left: 48px; background-color: var(--color-surface-container-low);">
+            <select id="assign-vehicle" class="input-field-modal">
               <option value="Swift Dzire (DL-1CA-1234)">Swift Dzire (DL-1C-1234) - Available</option>
               <option value="Hyundai Aura (DL-1CB-3456)">Hyundai Aura (DL-1C-3456) - In Garage</option>
             </select>
@@ -365,7 +370,6 @@
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
           <span>Dispatch & Live Monitor</span>
-          <span class="material-symbols-rounded">near_me</span>
         </button>
       </form>
     </div>
